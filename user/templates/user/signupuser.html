@@ -2,14 +2,20 @@
 {% block content %}
 
 
+
+
 <div class="container">
+  {% if user.is_authenticated %}
+  <h6> Logged In as {{user}}</h6>
+  {% endif %}
+
   <h1>Sign Up</h1>
   <h2>{{error}}</h2>
   <form method="POST">
     {% csrf_token %}
   {{form.as_p}}
   <button type="submit">Sign Up</button>
-
+<p></p>
   </form>
   <a href="{% url 'loginuser' %}"><button type="submit">Old User?</button>
   </a>

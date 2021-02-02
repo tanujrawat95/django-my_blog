@@ -9,7 +9,7 @@
   <body>
    {% if user.is_authenticated %}
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
       <div class="container">
 
 
@@ -23,14 +23,16 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'MyBlogs' %}">My Blogs</a>
       </li>
-
+</div>
         {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
           <form class="d-flex" action="{% url 'logoutuser' %}" method="post">
             {% csrf_token %}
-          <li> <button class="btn btn-outline-success" type="submit">Logout</button></li>
+          <li class="nav-item active"> <button class="btn btn-outline-success" type="submit">Logout</button></li>
         </form>
+      </ul>
             {% endif %}
-  </div>
+
   </div>
 </nav>
 {% endif %}

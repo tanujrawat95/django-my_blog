@@ -19,3 +19,7 @@
 .link a:hover{
   text-decoration: none;
 }
+
+.link a:link{
+  font-size: 40px;
+}
