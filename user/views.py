@@ -69,7 +69,7 @@ def update(request, blog_id):
         form = BlogForm(instance = current)
         return render(request, "user/update.html", {'form':form})
     else:
-        form=BlogForm(request.POST, instance = current)
+        form=BlogForm(request.POST, request.FILES, instance = current)
         if form.is_valid():
             form.save()
         return HttpResponseRedirect("/Blog/"+blog_id)
