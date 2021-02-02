@@ -13,7 +13,7 @@
       <div class="container">
 
 
-  <a class="navbar-brand" href="{% url 'list_blog' %}">Blog</a>
+  <a class="navbar-brand" href="{% url 'AllBlogs' %}">Blog</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -21,7 +21,7 @@
         <a class="nav-link" href="{% url 'blog' %}">Create Blog <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'list_blog' %}">My Blogs</a>
+        <a class="nav-link" href="{% url 'MyBlogs' %}">My Blogs</a>
       </li>
 
         {% if user.is_authenticated %}
@@ -34,11 +34,7 @@
   </div>
 </nav>
 {% endif %}
-<!--
-      <form action="{% url 'logoutuser' %}" method="post">
-        {% csrf_token %}
-      <button type="submit">Logout</button>
-      </form> -->
+
 
     {% block content %}{% endblock %}
     <link rel="stylesheet" href="{% static 'user/master.css' %}">

@@ -25,6 +25,10 @@ urlpatterns = [
     path('logout/', views.logoutuser, name='logoutuser'),
     path('login/', views.loginuser, name='loginuser'),
     path('blog/', views.blog, name='blog'),
-    path('list_blog/', views.list_blog, name='list_blog'),
+    path('MyBlogs/', views.list_blogs, name='MyBlogs'),
+    path('AllBlogs/', views.all_blogs, name='AllBlogs'),
+    path('Blog/<blog_id>/', views.details, name='details'),
+    path('Blog/<blog_id>/update', views.update, name='update'),
+    path('Blog/<blog_id>/delete', views.delete, name='delete'),
     ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

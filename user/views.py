@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , get_object_or_404 , HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm ,AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -45,12 +45,37 @@ def blog(request):
             new_blog=form.save(commit=False)
             new_blog.user = request.user
             new_blog.save()
-            return redirect ('list_blog')
+            return redirect ('MyBlogs')
     else:
         form = BlogForm()
     return render(request, 'user/blog.html', {'form': form})
 
 
-def list_blog(request):
-    current = Blog.objects.filter(user=request.user)
+def list_blogs(request):
+    current = Blog.objects.filter(user=request.user).order_by("-created")
     return render(request,'user/your_blogs.html',{'current':current})
+
+def all_blogs(request):
+    current = Blog.objects.all().order_by("-created")
+    return render(request,'user/all_blogs.html',{'current':current})
+
+def details(request, blog_id):
+    current = get_object_or_404(Blog, pk=blog_id)
+    return render(request,'user/details.html',{'current':current})
+
+def update(request, blog_id):
+    current = get_object_or_404(Blog, pk = blog_id)
+    if request.method == "GET":
+        form = BlogForm(instance = current)
+        return render(request, "user/update.html", {'form':form})
+    else:
+        form=BlogForm(request.POST, instance = current)
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect("/Blog/"+blog_id)
+
+def delete(request, blog_id):
+    current = get_object_or_404(Blog, pk = blog_id)
+    if request.method == "POST":
+        current.delete()
+        return redirect('MyBlogs')

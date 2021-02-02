@@ -6,8 +6,8 @@
 {% if user.is_authenticated %}
 <!-- <a href="{% url 'blog' %}"><button type="submit">Create Blog</button></a> -->
 {% for items in current %}
-<div class=" link">
-<a id="link" href="{% url 'details' items.id %}"><h2 id="Title">{{items.title}}</h2></a>
+<div class="link">
+<a href="{% url 'details' items.id %}"> <h2 id="Title">{{items.title}}</h2></a>
 </div>
 {%if items.blog_pic%}
   <img class="img-thumbnail blogPic" src="{{ items.blog_pic.url|default_if_none:'#'}}">

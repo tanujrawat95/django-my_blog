@@ -1,0 +1,31 @@
+{% extends 'user/base.html' %}
+{% block content %}
+
+<div class="container">
+
+{% if user.is_authenticated %}
+ <h2 id="Title">{{current.title}}</h2>
+{%if current.blog_pic%}
+  <img class="img-thumbnail detailPic" src="{{ current.blog_pic.url|default_if_none:'#'}}">
+{%endif%}
+<p id="dec">{{current.description|truncatechars:100}}</p>
+
+<h6>Created on {{current.created}} By {{current.user}}</h6>
+<hr>
+
+{% ifequal request.user current.user %}
+
+<a href="{% url 'update' current.id %}"><button type="submit">Update</button>
+<br>
+<form action="{% url 'delete' current.id %}"  method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+
+{% endifequal %}
+{% else %}
+<h2>Please Login First</h2>
+{% endif %}
+
+</div>
+{% endblock %}

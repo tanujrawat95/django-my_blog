@@ -1,12 +1,21 @@
 #Title{
-  font-size: 70px;
+  font-size: 40px;
 }
 
-.profilePic{
+.blogPic{
+     height:auto;
+     width: 150px;
+}
+
+.detailPic{
      height:auto;
      width: 50%;
 }
 
 #dec{
-  font-size: 50px
+  font-size: 20px
+}
+
+.link a:hover{
+  text-decoration: none;
 }
